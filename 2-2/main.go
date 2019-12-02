@@ -23,8 +23,7 @@ mainLoop:
 	for {
 		for noun := 0; noun <= 99; noun++ {
 			for verb := 0; verb <= 99; verb++ {
-				
-				memory := append(program[:0:0], program...)
+				memory := resetMemory()
 				memory[1] = noun
 				memory[2] = verb
 
@@ -51,8 +50,11 @@ func compute(code *[]int) {
 			(*code)[(*code)[instructionPointer+3]] = (*code)[(*code)[instructionPointer+1]] * (*code)[(*code)[instructionPointer+2]]
 			instructionPointer += multiply.instructionSize
 		} else if (*code)[instructionPointer] == halt.opCode {
-			// instructionPointer += halt.instructionSize
 			break
 		}
 	}
+}
+
+func resetMemory() []int{
+	return append(program[:0:0], program...)
 }
