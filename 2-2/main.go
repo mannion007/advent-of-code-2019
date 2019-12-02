@@ -14,7 +14,7 @@ var (
 
 	add      = instruction{opCode: 1, instructionSize: 4}
 	multiply = instruction{opCode: 2, instructionSize: 4}
-	halt     = instruction{opCode: 99, instructionSize: 1}
+	halt     = instruction{opCode: 99}
 )
 
 func main() {
@@ -36,7 +36,6 @@ mainLoop:
 				}
 			}
 		}
-		panic("Exhausted values without finding noun and verb")
 	}
 
 }
@@ -52,10 +51,8 @@ func compute(code *[]int) {
 			(*code)[(*code)[instructionPointer+3]] = (*code)[(*code)[instructionPointer+1]] * (*code)[(*code)[instructionPointer+2]]
 			instructionPointer += multiply.instructionSize
 		} else if (*code)[instructionPointer] == halt.opCode {
-			instructionPointer += halt.instructionSize
+			// instructionPointer += halt.instructionSize
 			break
-		} else {
-			panic("Unknown opcode")
 		}
 	}
 }
