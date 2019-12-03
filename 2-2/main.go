@@ -49,9 +49,11 @@ func compute(code *[]int) int {
 			(*code)[(*code)[instructionPointer+3]] = (*code)[(*code)[instructionPointer+1]] * (*code)[(*code)[instructionPointer+2]]
 			instructionPointer += multiply.instructionSize
 		} else if (*code)[instructionPointer] == halt.opCode {
-			return (*code)[0]
+			break
 		}
 	}
+
+	return (*code)[0]
 }
 
 func resetMemory() []int {
