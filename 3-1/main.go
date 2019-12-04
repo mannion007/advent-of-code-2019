@@ -24,8 +24,6 @@ func main() {
 	trace1 := trace(readFile("wire1.txt"))
 	trace2 := trace(readFile("wire2.txt"))
 
-	inputs := readFile2()
-
 	intersect := make(map[vector]struct{})
 	for k, v := range trace1 {
 		if _, ok := trace2[k]; ok {
@@ -73,24 +71,4 @@ func readFile(fileName string) []string {
     }
 
     return strings.SplitN(string(data), ",", -1)
-}
-
-func readFile2() []string {
-	data, err := ioutil.ReadFile("input.txt")
-
-	if err != nil {
-        panic(err)
-    }
-
-    data = string(data)
-
-    var wires[][]string
-
-    parts := strings.SplitN(data, "\n", -1)
-
-    for part := range(parts) {
-    	wires = append(wires, strings.SplitN(string(part), ",", -1))
-    }
-
-    return wires
 }
