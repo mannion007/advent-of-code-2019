@@ -35,7 +35,7 @@ func main() {
 		k.x = int(math.Abs(float64(k.x)))
 		k.y = int(math.Abs(float64(k.y)))
 
-		if k.x+k.y < minManhattan || minManhattan == 0 {
+		if minManhattan == 0 || k.x+k.y < minManhattan {
 			minManhattan = k.x + k.y
 		}
 	}
